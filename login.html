@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso - Kit Gestante Premium</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #FBF7F1; /* Marfim */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #FFFFFF;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(74, 63, 53, 0.08);
+            width: 100%;
+            max-width: 360px;
+            text-align: center;
+        }
+        h2 {
+            color: #4A3F35; /* Café */
+            margin-bottom: 8px;
+            font-size: 24px;
+            margin-top: 0;
+        }
+        p {
+            color: #8C7F73; /* Areia Text */
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+        .input-group {
+            text-align: left;
+            margin-bottom: 16px;
+        }
+        label {
+            display: block;
+            font-size: 11px;
+            font-weight: bold;
+            color: #4A3F35;
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #EDE7DC;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 14px;
+            color: #4A3F35;
+            background-color: #FBF7F1;
+        }
+        input:focus {
+            outline: none;
+            border-color: #8C9A7B; /* Sálvia */
+        }
+        .btn-primary {
+            width: 100%;
+            padding: 14px;
+            background-color: #8C9A7B; /* Sálvia */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.2s;
+        }
+        .btn-primary:hover {
+            background-color: #5C6B4D;
+        }
+        .btn-secondary {
+            width: 100%;
+            padding: 14px;
+            background-color: transparent;
+            color: #8C9A7B; /* Sálvia */
+            border: 2px solid #8C9A7B;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: all 0.2s;
+            box-sizing: border-box;
+        }
+        .btn-secondary:hover {
+            background-color: #E8EDE3;
+        }
+        .switch-form {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #8C7F73;
+        }
+        .switch-form a {
+            color: #C97B5C; /* Terracota para destacar o link */
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .switch-form a:hover {
+            text-decoration: underline;
+        }
+        /* Classe para esconder a tela que não está ativa */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- ================= TELA DE LOGIN ================= -->
+    <div id="login-section">
+        <h2>Kit Gestante Premium</h2>
+        <p>Seja bem-vinda! Faça o login para acessar.</p>
+        
+        <form onsubmit="event.preventDefault(); window.location.href='kit-gestante-premium.html';">
+            <div class="input-group">
+                <label for="login-email">E-MAIL</label>
+                <input type="email" id="login-email" value="ana.clara@exemplo.com" required>
+            </div>
+            <div class="input-group">
+                <label for="login-senha">SENHA</label>
+                <input type="password" id="login-senha" value="123456" required>
+            </div>
+            <button type="submit" class="btn-primary">Entrar</button>
+        </form>
+        
+        <div class="switch-form">
+            Não tem uma conta? <a href="#" onclick="alternarTelas()">Cadastre-se</a>
+        </div>
+    </div>
+
+    <!-- ================= TELA DE CADASTRO ================= -->
+    <div id="cadastro-section" class="hidden">
+        <h2>Criar Conta</h2>
+        <p>Preencha os dados abaixo para começar.</p>
+        
+        <form onsubmit="event.preventDefault(); alert('Cadastro realizado com sucesso!'); alternarTelas();">
+            <div class="input-group">
+                <label for="cad-nome">NOME COMPLETO</label>
+                <input type="text" id="cad-nome" placeholder="Ex: Ana Clara Silva" required>
+            </div>
+            <div class="input-group">
+                <label for="cad-email">E-MAIL</label>
+                <input type="email" id="cad-email" placeholder="Ex: ana@email.com" required>
+            </div>
+            <div class="input-group">
+                <label for="cad-senha">CRIAR SENHA</label>
+                <input type="password" id="cad-senha" placeholder="Mínimo 6 caracteres" required>
+            </div>
+            <div class="input-group">
+                <label for="cad-confirma">CONFIRMAR SENHA</label>
+                <input type="password" id="cad-confirma" placeholder="Digite a senha novamente" required>
+            </div>
+            <button type="submit" class="btn-primary">Concluir Cadastro</button>
+            <button type="button" class="btn-secondary" onclick="alternarTelas()">Voltar</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Função que esconde uma tela e mostra a outra
+    function alternarTelas() {
+        const loginSec = document.getElementById('login-section');
+        const cadastroSec = document.getElementById('cadastro-section');
+        
+        loginSec.classList.toggle('hidden');
+        cadastroSec.classList.toggle('hidden');
+    }
+
+    // Quando o formulário de LOGIN for enviado
+    document.querySelector('#login-section form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Se ela não se cadastrou e usou o padrão, salvamos como Ana Clara
+        if (!localStorage.getItem('nomeGestante')) {
+            localStorage.setItem('nomeGestante', 'Ana Clara');
+        }
+        
+        window.location.href = 'kit-gestante-premium.html';
+    });
+
+    // Quando o formulário de CADASTRO for enviado
+    document.querySelector('#cadastro-section form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const nomeDigitado = document.getElementById('cad-nome').value;
+        
+        // Salva o nome na memória temporária do navegador
+        localStorage.setItem('nomeGestante', nomeDigitado);
+        
+        alert('Cadastro realizado com sucesso!');
+        alternarTelas();
+    });
+</script>
+</body>
+</html>
